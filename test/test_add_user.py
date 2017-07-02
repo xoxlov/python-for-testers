@@ -49,12 +49,8 @@ class TestUser(unittest.TestCase):
         wd.find_element_by_link_text("home").click()
 
     def login(self, wd, username, password):
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
+        self.fill_input_data_field(wd, "user", username)
+        self.fill_input_data_field(wd, "pass", password)
         wd.find_element_by_css_selector("input[type='submit']").click()
 
     def logout(self, wd):
@@ -62,16 +58,20 @@ class TestUser(unittest.TestCase):
 
     def add_new_contact(self, wd, contact):
         wd.find_element_by_link_text("add new").click()
-        self.fill_contact_data_field(wd, "firstname", contact.first_name)
-        self.fill_contact_data_field(wd, "lastname", contact.last_name)
-        self.fill_contact_data_field(wd, "work", contact.work_phone)
-        self.fill_contact_data_field(wd, "title", contact.position)
-        self.fill_contact_data_field(wd, "company", contact.company)
-        self.fill_contact_data_field(wd, "address", contact.address_1)
-        self.fill_contact_data_field(wd, "email", contact.email)
+        contact_data = {
+            "firstname": contact.first_name,
+            "lastname": contact.last_name,
+            "work": contact.work_phone,
+            "title": contact.position,
+            "company": contact.company,
+            "address": contact.address_1,
+            "email": contact.email
+        }
+        for key in contact_data:
+            self.fill_input_data_field(wd, key, contact_data[key])
         wd.find_element_by_name("submit").click()
 
-    def fill_contact_data_field(self, wd, field_name, value):
+    def fill_input_data_field(self, wd, field_name, value):
         wd.find_element_by_name(field_name).click()
         wd.find_element_by_name(field_name).clear()
         wd.find_element_by_name(field_name).send_keys(value)
