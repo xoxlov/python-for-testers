@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
+from fixture.session import SessionHelper
 
 class Application:
     def __init__(self):
@@ -8,21 +9,7 @@ class Application:
         caps['marionette'] = False
         self.wd = webdriver.Firefox(capabilities=caps)
         self.wd.implicitly_wait(60)
-
-    def login(self, username, password):
-        wd = self.wd
-        self.open_homepage()
-        wd.find_element_by_name("user").click()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_css_selector("input[type='submit']").click()
-
-    def logout(self):
-        wd = self.wd
-        wd.find_element_by_link_text("Logout").click()
+        self.session = SessionHelper(self)
 
     def create_group(self, group):
         wd = self.wd
