@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 from fixture.session import SessionHelper
+from fixture.group import GroupHelper
 
 class Application:
     def __init__(self):
@@ -10,19 +11,7 @@ class Application:
         self.wd = webdriver.Firefox(capabilities=caps)
         self.wd.implicitly_wait(60)
         self.session = SessionHelper(self)
-
-    def create_group(self, group):
-        wd = self.wd
-        self.open_groups_page()
-        # init group creation
-        wd.find_element_by_name("new").click()
-        # fill group form
-        self.fill_input_data_field("group_name", group.name)
-        self.fill_input_data_field("group_header", group.header)
-        self.fill_input_data_field("group_footer", group.footer)
-        wd.find_element_by_name("submit").click()
-        # return to the groups page
-        self.open_groups_page()
+        self.group = GroupHelper(self)
 
     def add_new_contact(self, contact):
         wd = self.wd
@@ -46,10 +35,6 @@ class Application:
         wd.find_element_by_name(field_name).click()
         wd.find_element_by_name(field_name).clear()
         wd.find_element_by_name(field_name).send_keys(value)
-
-    def open_groups_page(self):
-        wd = self.wd
-        wd.find_element_by_link_text("groups").click()
 
     def open_homepage(self):
         wd = self.wd
