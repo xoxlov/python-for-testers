@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 class ContactHelper():
     def __init__(self, app):
         self.app = app
