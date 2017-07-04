@@ -24,6 +24,9 @@ class Application:
         wd = self.wd
         wd.find_element_by_link_text("home").click()
 
+    def open_groups_page(self):
+        wd = self.wd
+        wd.find_element_by_link_text("groups").click()
 
     def destroy(self):
         self.wd.quit()
