@@ -6,11 +6,14 @@ class ContactHelper():
         self.app = app
 
     def open_contacts_page(self):
-        self.app.open_homepage()
+        wd = self.app.wd
+        if wd.find_elements_by_css_selector("input[value='Send e-Mail']"):
+            return
+        wd.find_element_by_link_text("home").click()
 
     def count(self):
         wd = self.app.wd
-        self.app.open_groups_page()
+        self.open_contacts_page()
         return len(wd.find_elements_by_name("selected[]"))
 
     def add_new(self, contact):
@@ -18,7 +21,7 @@ class ContactHelper():
         wd.find_element_by_link_text("add new").click()
         self._fill_contact_data(contact)
         wd.find_element_by_name("submit").click()
-        self.app.open_homepage_by_link()
+        self.open_contacts_page()
 
     def delete_first_contact(self):
         wd = self.app.wd
@@ -45,7 +48,7 @@ class ContactHelper():
         wd.find_element_by_css_selector("img[title='Edit']").click()
         self._fill_contact_data(contact)
         wd.find_element_by_name("update").click()
-        self.app.open_homepage_by_link()
+        self.open_contacts_page()
 
     def update_all_empty_contacts(self, contact):
         wd = self.app.wd
@@ -65,11 +68,11 @@ class ContactHelper():
             entries_list[index].find_element_by_css_selector("img[title='Edit']").click()
             self._fill_contact_data(contact)
             wd.find_element_by_name("update").click()
-            self.app.open_homepage_by_link()
+            self.open_contacts_page()
             entries_list = wd.find_elements_by_css_selector("tr[name='entry']")
             # reset index counter due to list of contacts has changed and we need to analyze from scratch
             index = 0
-        self.app.open_homepage_by_link()
+        self.open_contacts_page()
 
     def _fill_contact_data(self, contact):
         contact_data = {

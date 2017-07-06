@@ -5,9 +5,15 @@ class SessionHelper():
     def __init__(self, app):
         self.app = app
 
+    def open_homepage(self):
+        wd = self.app.wd
+        if wd.current_url.endswith("/addressbook/"):
+            return
+        wd.get("http://localhost/addressbook/")
+
     def login(self, username, password):
         wd = self.app.wd
-        self.app.open_homepage()
+        self.open_homepage()
         self._type_input_value("user", username)
         self._type_input_value("pass", password)
         wd.find_element_by_css_selector("input[type='submit']").click()

@@ -11,7 +11,6 @@ class Application:
         caps = DesiredCapabilities.FIREFOX
         caps['marionette'] = False
         self.wd = webdriver.Firefox(capabilities=caps)
-        self.wd.implicitly_wait(3)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
@@ -22,18 +21,6 @@ class Application:
             return True
         except:
             return False
-
-    def open_homepage(self):
-        wd = self.wd
-        wd.get("http://localhost/addressbook/")
-
-    def open_homepage_by_link(self):
-        wd = self.wd
-        wd.find_element_by_link_text("home").click()
-
-    def open_groups_page(self):
-        wd = self.wd
-        wd.find_element_by_link_text("groups").click()
 
     def destroy(self):
         self.wd.quit()

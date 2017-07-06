@@ -5,18 +5,24 @@ class GroupHelper():
     def __init__(self, app):
         self.app = app
 
+    def open_groups_page(self):
+        wd = self.app.wd
+        if wd.current_url.endswith("/group.php") and wd.find_elements_by_name("new"):
+            return
+        wd.find_element_by_link_text("groups").click()
+
     def count(self):
         wd = self.app.wd
-        self.app.open_groups_page()
+        self.open_groups_page()
         return len(wd.find_elements_by_name("selected[]"))
 
     def create(self, group):
         wd = self.app.wd
-        self.app.open_groups_page()
+        self.open_groups_page()
         wd.find_element_by_name("new").click()
         self._fill_group_data(group)
         wd.find_element_by_name("submit").click()
-        self.app.open_groups_page()
+        self.open_groups_page()
 
     def _select_first_group(self):
         wd = self.app.wd
@@ -24,33 +30,33 @@ class GroupHelper():
 
     def delete_first_group(self):
         wd = self.app.wd
-        self.app.open_groups_page()
+        self.open_groups_page()
         self._select_first_group()
         wd.find_element_by_name("delete").click()
-        self.app.open_groups_page()
+        self.open_groups_page()
 
     def delete_all_groups(self):
         wd = self.app.wd
-        self.app.open_groups_page()
+        self.open_groups_page()
         # find and select all groups on page
         groups_list = wd.find_elements_by_name("selected[]")
         for index in range(len(groups_list)):
             groups_list[index].click()
         wd.find_element_by_name("delete").click()
-        self.app.open_groups_page()
+        self.open_groups_page()
 
     def update_first_group(self, group):
         wd = self.app.wd
-        self.app.open_groups_page()
+        self.open_groups_page()
         self._select_first_group()
         wd.find_element_by_name("edit").click()
         self._fill_group_data(group)
         wd.find_element_by_name("update").click()
-        self.app.open_groups_page()
+        self.open_groups_page()
 
     def update_all_empty_groups(self, group):
         wd = self.app.wd
-        self.app.open_groups_page()
+        self.open_groups_page()
         # try to find the full list of contacts records
         groups_list = wd.find_elements_by_css_selector("span.group")
         # if any records found then analyze them
@@ -66,11 +72,11 @@ class GroupHelper():
             wd.find_element_by_name("edit").click()
             self._fill_group_data(group)
             wd.find_element_by_name("update").click()
-            self.app.open_groups_page()
+            self.open_groups_page()
             groups_list = wd.find_elements_by_css_selector("span.group")
             # reset index counter due to list of contacts has changed and we need to analyze from scratch
             index = 0
-        self.app.open_groups_page()
+        self.open_groups_page()
 
     def _fill_group_data(self, group):
         group_data = {"group_name": group.name,
