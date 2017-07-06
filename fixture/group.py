@@ -5,26 +5,28 @@ class GroupHelper():
     def __init__(self, app):
         self.app = app
 
+    def count(self):
+        wd = self.app.wd
+        self.app.open_groups_page()
+        return len(wd.find_elements_by_name("selected[]"))
+
     def create(self, group):
         wd = self.app.wd
         self.app.open_groups_page()
-        # init group creation
         wd.find_element_by_name("new").click()
-        # fill group form
         self._fill_group_data(group)
         wd.find_element_by_name("submit").click()
-        # return to the groups page
         self.app.open_groups_page()
+
+    def _select_first_group(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
 
     def delete_first_group(self):
         wd = self.app.wd
         self.app.open_groups_page()
-        # select first group on page if any
-        groups_list = wd.find_elements_by_name("selected[]")
-        if groups_list:
-            groups_list[0].click()
-            # submit deletion
-            wd.find_element_by_name("delete").click()
+        self._select_first_group()
+        wd.find_element_by_name("delete").click()
         self.app.open_groups_page()
 
     def delete_all_groups(self):
@@ -32,23 +34,19 @@ class GroupHelper():
         self.app.open_groups_page()
         # find and select all groups on page
         groups_list = wd.find_elements_by_name("selected[]")
-        if groups_list:
-            for index in range(len(groups_list)):
-                groups_list[index].click()
-            # submit deletion
-            wd.find_element_by_name("delete").click()
+        for index in range(len(groups_list)):
+            groups_list[index].click()
+        wd.find_element_by_name("delete").click()
         self.app.open_groups_page()
 
     def update_first_group(self, group):
         wd = self.app.wd
         self.app.open_groups_page()
-        groups_list = wd.find_elements_by_name("selected[]")
-        if groups_list:
-            groups_list[0].click()
-            wd.find_element_by_name("edit").click()
-            self._fill_group_data(group)
-            wd.find_element_by_name("update").click()
-            self.app.open_groups_page()
+        self._select_first_group()
+        wd.find_element_by_name("edit").click()
+        self._fill_group_data(group)
+        wd.find_element_by_name("update").click()
+        self.app.open_groups_page()
 
     def update_all_empty_groups(self, group):
         wd = self.app.wd

@@ -3,6 +3,8 @@ from model.contact import Contact
 
 
 def test_update_first_contact(app):
+    if app.contact.count() == 0:
+        app.contact.add_new(Contact(first_name="Name to be updated", last_name="Name to be updated"))
     app.contact.update_first_contact(Contact(first_name="Alexander", last_name="Pavlov",
                                              work_phone="+7.223.322.223.322",
                                              position="System Engineer", company="Cherehapa Ltd.",
@@ -17,4 +19,6 @@ def test_update_all_empty_contacts(app):
 
 
 def test_update_first_contact_name(app):
+    if app.contact.count() == 0:
+        app.contact.add_new(Contact(first_name="Name to be updated", last_name="Name to be updated"))
     app.contact.update_first_contact(Contact(first_name="Alexey"))

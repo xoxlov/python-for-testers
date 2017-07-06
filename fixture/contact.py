@@ -8,6 +8,11 @@ class ContactHelper():
     def open_contacts_page(self):
         self.app.open_homepage()
 
+    def count(self):
+        wd = self.app.wd
+        self.app.open_groups_page()
+        return len(wd.find_elements_by_name("selected[]"))
+
     def add_new(self, contact):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
@@ -18,20 +23,15 @@ class ContactHelper():
     def delete_first_contact(self):
         wd = self.app.wd
         self.open_contacts_page()
-        # select first group on page if any
-        contacts_list = wd.find_elements_by_name("selected[]")
-        if contacts_list:
-            contacts_list[0].click()
-            self._submit_and_confirm_user_deletion()
+        wd.find_element_by_name("selected[]")
+        self._submit_and_confirm_user_deletion()
         self.open_contacts_page()
 
     def delete_all_contacts(self):
         wd = self.app.wd
         self.open_contacts_page()
-        # find and select all contacts on page
-        if wd.find_elements_by_name("selected[]"):
-            wd.find_element_by_css_selector("input[id='MassCB']").click()
-            self._submit_and_confirm_user_deletion()
+        wd.find_element_by_css_selector("input[id='MassCB']").click()
+        self._submit_and_confirm_user_deletion()
         self.open_contacts_page()
 
     def _submit_and_confirm_user_deletion(self):
@@ -42,12 +42,10 @@ class ContactHelper():
     def update_first_contact(self, contact):
         wd = self.app.wd
         self.open_contacts_page()
-        edit_buttons = wd.find_elements_by_css_selector("img[title='Edit']")
-        if edit_buttons:
-            edit_buttons[0].click()
-            self._fill_contact_data(contact)
-            wd.find_element_by_name("update").click()
-            self.app.open_homepage_by_link()
+        wd.find_element_by_css_selector("img[title='Edit']").click()
+        self._fill_contact_data(contact)
+        wd.find_element_by_name("update").click()
+        self.app.open_homepage_by_link()
 
     def update_all_empty_contacts(self, contact):
         wd = self.app.wd
