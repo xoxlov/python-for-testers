@@ -11,7 +11,7 @@ class GroupHelper():
         # init group creation
         wd.find_element_by_name("new").click()
         # fill group form
-        self._fill_input_data(group)
+        self._fill_group_data(group)
         wd.find_element_by_name("submit").click()
         # return to the groups page
         self.app.open_groups_page()
@@ -21,7 +21,7 @@ class GroupHelper():
         self.app.open_groups_page()
         # select first group on page if any
         groups_list = wd.find_elements_by_name("selected[]")
-        if (len(groups_list)):
+        if groups_list:
             groups_list[0].click()
             # submit deletion
             wd.find_element_by_name("delete").click()
@@ -32,7 +32,7 @@ class GroupHelper():
         self.app.open_groups_page()
         # find and select all groups on page
         groups_list = wd.find_elements_by_name("selected[]")
-        if (len(groups_list)):
+        if groups_list:
             for index in range(len(groups_list)):
                 groups_list[index].click()
             # submit deletion
@@ -46,7 +46,7 @@ class GroupHelper():
         if groups_list:
             groups_list[0].click()
             wd.find_element_by_name("edit").click()
-            self._fill_input_data(group)
+            self._fill_group_data(group)
             wd.find_element_by_name("update").click()
             self.app.open_groups_page()
 
@@ -66,7 +66,7 @@ class GroupHelper():
             # group with no name found
             groups_list[index].click()
             wd.find_element_by_name("edit").click()
-            self._fill_input_data(group)
+            self._fill_group_data(group)
             wd.find_element_by_name("update").click()
             self.app.open_groups_page()
             groups_list = wd.find_elements_by_css_selector("span.group")
@@ -74,15 +74,17 @@ class GroupHelper():
             index = 0
         self.app.open_groups_page()
 
-    def _fill_input_data(self, group):
-        wd = self.app.wd
-        group_data = {
-            "group_name": group.name,
-            "group_header": group.header,
-            "group_footer": group.footer
-        }
+    def _fill_group_data(self, group):
+        group_data = {"group_name": group.name,
+                      "group_header": group.header,
+                      "group_footer": group.footer}
         for key in group_data:
-            wd.find_element_by_name(key).click()
-            wd.find_element_by_name(key).clear()
-            wd.find_element_by_name(key).send_keys(group_data[key])
+            self._type_input_value(key, group_data[key])
+
+    def _type_input_value(self, location, value):
+        wd = self.app.wd
+        if value is not None:
+            wd.find_element_by_name(location).click()
+            wd.find_element_by_name(location).clear()
+            wd.find_element_by_name(location).send_keys(value)
 
