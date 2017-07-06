@@ -20,12 +20,9 @@ class ContactHelper():
         self.open_contacts_page()
         # select first group on page if any
         contacts_list = wd.find_elements_by_name("selected[]")
-        if (len(contacts_list)):
+        if contacts_list:
             contacts_list[0].click()
-            # submit deletion
-            wd.find_element_by_css_selector("input[value='Delete']").click()
-            # confirm operation in alert
-            wd.switch_to_alert().accept()
+            self._submit_and_confirm_user_deletion()
         self.open_contacts_page()
 
     def delete_all_contacts(self):
@@ -34,11 +31,13 @@ class ContactHelper():
         # find and select all contacts on page
         if wd.find_elements_by_name("selected[]"):
             wd.find_element_by_css_selector("input[id='MassCB']").click()
-            # submit deletion
-            wd.find_element_by_css_selector("input[value='Delete']").click()
-            # confirm operation in alert
-            wd.switch_to_alert().accept()
+            self._submit_and_confirm_user_deletion()
         self.open_contacts_page()
+
+    def _submit_and_confirm_user_deletion(self):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value='Delete']").click()
+        wd.switch_to_alert().accept()
 
     def update_first_contact(self, contact):
         wd = self.app.wd
@@ -75,7 +74,6 @@ class ContactHelper():
         self.app.open_homepage_by_link()
 
     def _fill_contact_data(self, contact):
-        wd = self.app.wd
         contact_data = {
             "firstname": contact.first_name,
             "lastname": contact.last_name,
@@ -86,6 +84,11 @@ class ContactHelper():
             "email": contact.email
         }
         for key in contact_data:
-            wd.find_element_by_name(key).click()
-            wd.find_element_by_name(key).clear()
-            wd.find_element_by_name(key).send_keys(contact_data[key])
+            self._type_input_value(key, contact_data[key])
+
+    def _type_input_value(self, location, value):
+        wd = self.app.wd
+        if value is not None:
+            wd.find_element_by_name(location).click()
+            wd.find_element_by_name(location).clear()
+            wd.find_element_by_name(location).send_keys(value)

@@ -18,3 +18,9 @@ def test_update_all_empty_contacts(app):
                                                   position="DevOps engineer", company="Cherehapa Ltd.",
                                                   address_1="Moscow", email="devops@mail.me"))
     app.session.logout()
+
+
+def test_update_first_contact_name(app):
+    app.session.login(username="admin", password="secret")
+    app.contact.update_first_contact(Contact(first_name="Alexey"))
+    app.session.logout()
