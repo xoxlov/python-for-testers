@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from model.contact import Contact
 
 
 class ContactHelper():
@@ -26,7 +27,7 @@ class ContactHelper():
     def delete_first_contact(self):
         wd = self.app.wd
         self.open_contacts_page()
-        wd.find_element_by_name("selected[]")
+        wd.find_element_by_name("selected[]").click()
         self._submit_and_confirm_user_deletion()
         self.open_contacts_page()
 
@@ -93,3 +94,15 @@ class ContactHelper():
             wd.find_element_by_name(location).click()
             wd.find_element_by_name(location).clear()
             wd.find_element_by_name(location).send_keys(value)
+
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.open_contacts_page()
+        contacts_list = []
+        for row in wd.find_elements_by_css_selector("tr[name='entry']"):
+            cells = row.find_elements_by_css_selector("td")
+            lname = cells[1].text
+            fname = cells[2].text
+            id = cells[0].find_element_by_css_selector("input").get_attribute("value")
+            contacts_list.append(Contact(first_name=fname, last_name=lname, id=id))
+        return contacts_list
