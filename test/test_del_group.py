@@ -9,6 +9,9 @@ def test_delete_first_group(app):
     app.group.delete_first_group()
     new_groups = app.group.get_group_list()
     assert len(old_groups) - 1 == len(new_groups)
+    # first group in old list was removed
+    old_groups[0:1] = []
+    assert old_groups == new_groups
 
 
 def test_delete_all_groups(app):
@@ -16,4 +19,5 @@ def test_delete_all_groups(app):
         app.group.create(Group(name="Group to be deleted"))
     app.group.delete_all_groups()
     new_groups = app.group.get_group_list()
+    # need to check the length of new list to be 0, i.e. list is empty
     assert len(new_groups) == 0
