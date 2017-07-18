@@ -11,8 +11,8 @@ def test_update_first_group(app):
     # set object id to the first listed group id
     group.id = old_groups[0].id
     app.group.update_first_group(group)
+    assert len(old_groups) == app.group.count()
     new_groups = app.group.get_group_list()
-    assert len(old_groups) == len(new_groups)
     # change first listed group to the new object, id has been kept
     old_groups[0] = group
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
@@ -23,8 +23,8 @@ def test_update_all_empty_groups(app):
     app.group.update_all_empty_groups(Group(name="UpdatedFromEmptyGroup",
                                             header="UpdatedFromEmptyGroupHeader",
                                             footer="UpdatedFromEmptyGroupFooter"))
+    assert len(old_groups) == app.group.count()
     new_groups = app.group.get_group_list()
-    assert len(old_groups) == len(new_groups)
     # go through the groups list and look for empty groups
     for i in range(len(old_groups)):
         if old_groups[i].name == '':
@@ -45,8 +45,8 @@ def test_update_first_group_name(app):
     group = Group(name="Updated Group Name")
     group.id = old_groups[0].id
     app.group.update_first_group(group)
+    assert len(old_groups) == app.group.count()
     new_groups = app.group.get_group_list()
-    assert len(old_groups) == len(new_groups)
     group.header = old_groups[0].header
     group.footer = old_groups[0].footer
     group.id = old_groups[0].id
@@ -60,8 +60,8 @@ def test_update_first_group_header(app):
     old_groups = app.group.get_group_list()
     group = Group(header="Updated Group Header")
     app.group.update_first_group(Group(header="Updated Group Header"))
+    assert len(old_groups) == app.group.count()
     new_groups = app.group.get_group_list()
-    assert len(old_groups) == len(new_groups)
     group.name = old_groups[0].name
     group.footer = old_groups[0].footer
     group.id = old_groups[0].id

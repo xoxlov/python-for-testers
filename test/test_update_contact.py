@@ -14,8 +14,8 @@ def test_update_first_contact(app):
     # set object id to the first listed contact id
     contact.id = old_contacts[0].id
     app.contact.update_first_contact(contact)
+    assert len(old_contacts) == app.contact.count()
     new_contacts = app.contact.get_contact_list()
-    assert len(old_contacts) == len(new_contacts)
     # change first listed contact to the new object, id has been kept
     old_contacts[0] = contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
@@ -27,8 +27,8 @@ def test_update_all_empty_contacts(app):
                                                   work_phone="+7.777.777.7777",
                                                   position="DevOps engineer", company="Cherehapa Ltd.",
                                                   address_1="Moscow", email="devops@mail.me"))
+    assert len(old_contacts) == app.contact.count()
     new_contacts = app.contact.get_contact_list()
-    assert len(old_contacts) == len(new_contacts)
     # go through the contacts list and look for empty contacts
     for i in range(len(old_contacts)):
         if old_contacts[i].last_name == '' and old_contacts[i].first_name == '':
@@ -52,8 +52,8 @@ def test_update_first_contact_name(app):
     contact = Contact(first_name="Alexey")
     contact.id = old_contacts[0].id
     app.contact.update_first_contact(contact)
+    assert len(old_contacts) == app.contact.count()
     new_contacts = app.contact.get_contact_list()
-    assert len(old_contacts) == len(new_contacts)
     contact.last_name = old_contacts[0].last_name
     old_contacts[0] = contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
