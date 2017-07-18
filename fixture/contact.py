@@ -27,10 +27,10 @@ class ContactHelper():
         self.open_contacts_page()
         self.contact_cache = None
 
-    def delete_first_contact(self):
+    def delete_contact_by_index(self, index=0):
         wd = self.app.wd
         self.open_contacts_page()
-        wd.find_element_by_name("selected[]").click()
+        wd.find_elements_by_name("selected[]")[index].click()
         self._submit_and_confirm_user_deletion()
         self.open_contacts_page()
         self.contact_cache = None
@@ -48,10 +48,10 @@ class ContactHelper():
         wd.find_element_by_css_selector("input[value='Delete']").click()
         wd.switch_to_alert().accept()
 
-    def update_first_contact(self, contact):
+    def update_contact_by_index(self, contact, index=0):
         wd = self.app.wd
         self.open_contacts_page()
-        wd.find_element_by_css_selector("img[title='Edit']").click()
+        wd.find_elements_by_css_selector("img[title='Edit']")[index].click()
         self._fill_contact_data(contact)
         wd.find_element_by_name("update").click()
         self.open_contacts_page()
