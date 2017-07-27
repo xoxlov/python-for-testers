@@ -11,6 +11,8 @@ class Application:
         caps = DesiredCapabilities.FIREFOX
         caps['marionette'] = False
         self.wd = webdriver.Firefox(capabilities=caps)
+#         caps['marionette'] = True
+#         self.wd = webdriver.Firefox(firefox_binary="C:\\Program Files (x86)\\Mozilla Firefox Stable\\firefox.exe", capabilities=caps)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
