@@ -9,7 +9,7 @@ class SessionHelper():
         wd = self.app.wd
         if wd.current_url.endswith("/addressbook/"):
             return
-        wd.get("http://localhost/addressbook/")
+        wd.get(self.app.base_url)
 
     def login(self, username, password):
         wd = self.app.wd
