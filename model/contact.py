@@ -60,7 +60,7 @@ class Contact:
                                    [self.first_name, self.last_name]))).rstrip()
 
     def __repr__(self):
-        return "%s: '%s'" % (self.id, self.get_full_name())
+        return "%s: %s; %s; %s" % (self.id, self.first_name, self.middle_name, self.last_name)
 
     def __str__(self):
         return "Contact(%s: '%s')" % (self.id, self.get_full_name())
