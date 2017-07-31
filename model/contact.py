@@ -60,14 +60,18 @@ class Contact:
                                    [self.first_name, self.last_name]))).rstrip()
 
     def __repr__(self):
-        return "%s: %s; %s; %s" % (self.id, self.first_name, self.middle_name, self.last_name)
+        return "%s: %s" % (self.id, self.get_full_name())
 
     def __str__(self):
-        return "Contact(%s: '%s')" % (self.id, self.get_full_name())
+        output = "%s: %s" % (self.id, self.first_name)
+        for d in self.__dict__:
+            if self.__getattribute__(d) and d not in ["id", "first_name"]:
+                output += "; %s: %s" % (d, self.__getattribute__(d))
+        return output
 
     def __eq__(self, other):
         id_equal = self.id is None or other.id is None or self.id == other.id
-        return id_equal and self.get_full_name() == other.get_full_name()
+        return id_equal and self.get_short_full_name() == other.get_short_full_name()
 
     def id_or_max(self):
         return int(self.id) if self.id else maxsize
