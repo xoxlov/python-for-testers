@@ -32,14 +32,22 @@ class GroupHelper():
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
 
-    def _select_group_by_id(self, id=0):
+    def _select_group_by_id(self, gr_id):
         wd = self.app.wd
-        wd.find_element_by_css_selector("input[value='{0}']".format(id)).click()
+        wd.find_element_by_css_selector("input[value='{0}']".format(gr_id)).click()
 
-    def delete_group_by_id(self, id=0):
+    def delete_group_by_index(self, index=0):
         wd = self.app.wd
         self.open_groups_page()
-        self._select_group_by_id(id)
+        self._select_group_by_index(index)
+        wd.find_element_by_name("delete").click()
+        self.open_groups_page()
+        self.group_cache = None
+
+    def delete_group_by_id(self, gr_id):
+        wd = self.app.wd
+        self.open_groups_page()
+        self._select_group_by_id(gr_id)
         wd.find_element_by_name("delete").click()
         self.open_groups_page()
         self.group_cache = None
@@ -59,6 +67,16 @@ class GroupHelper():
         wd = self.app.wd
         self.open_groups_page()
         self._select_group_by_index(index)
+        wd.find_element_by_name("edit").click()
+        self._fill_group_data(group)
+        wd.find_element_by_name("update").click()
+        self.open_groups_page()
+        self.group_cache = None
+
+    def update_group_by_id(self, group, gr_id):
+        wd = self.app.wd
+        self.open_groups_page()
+        self._select_group_by_id(gr_id)
         wd.find_element_by_name("edit").click()
         self._fill_group_data(group)
         wd.find_element_by_name("update").click()
@@ -111,6 +129,6 @@ class GroupHelper():
             self.group_cache = []
             for element in wd.find_elements_by_css_selector("span.group"):
                 text = element.text
-                id = element.find_element_by_name("selected[]").get_attribute("value")
-                self.group_cache.append(Group(name=text, id=id))
+                gr_id = element.find_element_by_name("selected[]").get_attribute("value")
+                self.group_cache.append(Group(name=text, id=gr_id))
         return list(self.group_cache)

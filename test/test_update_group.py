@@ -1,23 +1,21 @@
 # -*- coding: utf-8 -*-
 from model.group import Group
-from random import randrange
+import random
 
 
-def test_update_random_group(app):
-    if app.group.count() == 0:
+def test_update_random_group(app, db, check_ui):
+    if len(db.get_group_list()) == 0:
         app.group.create(Group(name="Group to be updated"))
-    old_groups = app.group.get_group_list()
-    index = randrange(len(old_groups))
-    # create new Group object with data for update
-    group = Group(name="UpdatedGroup", header="UpdatedGroupHeader", footer="UpdatedGroupFooter")
-    # set object id to the group id by index
-    group.id = old_groups[index].id
-    app.group.update_group_by_index(group, index)
-    assert len(old_groups) == app.group.count()
-    new_groups = app.group.get_group_list()
-    # change group by index to the new object, id has been kept
-    old_groups[index] = group
+    old_groups = db.get_group_list()
+    group_to_update = random.choice(old_groups)
+    group = Group(id=group_to_update.id, name="UpdatedGroup", header="UpdatedGroupHeader", footer="UpdatedGroupFooter")
+    app.group.update_group_by_id(group, group_to_update.id)
+    new_groups = db.get_group_list()
+    old_groups[old_groups.index(group_to_update)] = group
+    assert len(old_groups) == len(new_groups)
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
+    if check_ui:
+        assert sorted(new_groups, key=Group.id_or_max) == sorted(app.group.get_group_list(), key=Group.id_or_max)
 
 
 def test_update_all_empty_groups(app):

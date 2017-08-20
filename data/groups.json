@@ -1,44 +1,9 @@
 [
   {
     "py/object": "model.group.Group",
-    "footer": "",
-    "header": "",
+    "footer": "CheFooter",
+    "header": "CheHeader",
     "id": null,
-    "name": ""
-  },
-  {
-    "py/object": "model.group.Group",
-    "footer": "Footer* !qJr#vA\"L^1 ",
-    "header": "HeaderSWwDH",
-    "id": null,
-    "name": "Namey"
-  },
-  {
-    "py/object": "model.group.Group",
-    "footer": "FooterwG o$N",
-    "header": "Header_I&' -I.r:7L#j9k",
-    "id": null,
-    "name": "NameG17{O ik"
-  },
-  {
-    "py/object": "model.group.Group",
-    "footer": "Footerls @I:N:jYOI",
-    "header": "Header1cU-]-d",
-    "id": null,
-    "name": "NameY(#S_z3"
-  },
-  {
-    "py/object": "model.group.Group",
-    "footer": "FooterkL",
-    "header": "Header,@Z2*n(O5`D\\[n",
-    "id": null,
-    "name": "NameQbU^YH\""
-  },
-  {
-    "py/object": "model.group.Group",
-    "footer": "Footer2Sv*J `>8xV-Cb?K",
-    "header": "Header:= {h}gM",
-    "id": null,
-    "name": "NameCIVMv."
+    "name": "CheGroup"
   }
 ]

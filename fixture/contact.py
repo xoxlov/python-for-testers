@@ -35,7 +35,18 @@ class ContactHelper():
     def update_contact_by_index(self, contact, index=0):
         wd = self.app.wd
         self.open_contacts_page()
+        self._select_contact_by_index(index)
         wd.find_elements_by_css_selector("img[title='Edit']")[index].click()
+        self._fill_contact_data(contact)
+        wd.find_element_by_name("update").click()
+        self.return_to_homepage()
+        self.contact_cache = None
+
+    def update_contact_by_id(self, contact, cnt_id):
+        wd = self.app.wd
+        self.open_contacts_page()
+        self._select_contact_by_id(cnt_id)
+        wd.find_elements_by_css_selector("a[href*='{0}']".format(cnt_id))[1].click()
         self._fill_contact_data(contact)
         wd.find_element_by_name("update").click()
         self.return_to_homepage()
@@ -108,13 +119,29 @@ class ContactHelper():
             wd.find_element_by_name(location).clear()
             wd.find_element_by_name(location).send_keys(value)
 
+    def _select_contact_by_index(self, index=0):
+        wd = self.app.wd
+        wd.find_elements_by_name("selected[]")[index].click()
+
+    def _select_contact_by_id(self, cnt_id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[id='{0}']".format(cnt_id)).click()
+
     def delete_contact_by_index(self, index=0):
         wd = self.app.wd
         self.open_contacts_page()
-        wd.find_elements_by_name("selected[]")[index].click()
+        self._select_contact_by_index(index)
         self._submit_and_confirm_user_deletion()
         self.return_to_homepage()
         self.contact_cache = None
+
+    def delete_contact_by_id(self, cnt_id):
+        wd = self.app.wd
+        self.open_contacts_page()
+        self._select_contact_by_id(cnt_id)
+        self._submit_and_confirm_user_deletion()
+        self.return_to_homepage()
+        self.group_cache = None
 
     def delete_all_contacts(self):
         wd = self.app.wd
@@ -140,13 +167,13 @@ class ContactHelper():
         wd = self.app.wd
         self.open_contacts_page()
         cells = wd.find_elements_by_css_selector("tr[name='entry']")[index].find_elements_by_css_selector("td")
-        id = cells[0].find_element_by_css_selector("input").get_attribute("value")
+        cnt_id = cells[0].find_element_by_css_selector("input").get_attribute("value")
         lname = cells[1].text or None
         fname = cells[2].text or None
         address = cells[3].text or None
         allemails = cells[4].text or None
         allphones = cells[5].text or None
-        return Contact(first_name=fname, last_name=lname, id=id, address=address,
+        return Contact(first_name=fname, last_name=lname, id=cnt_id, address=address,
                        all_emails=allemails, all_phones=allphones)
 
     def open_contact_to_edit_by_index(self, index):
@@ -167,7 +194,7 @@ class ContactHelper():
         wd = self.app.wd
         self.open_contact_to_edit_by_index(index)
 
-        id = wd.find_element_by_name("id").get_attribute("value")
+        cnt_id = wd.find_element_by_name("id").get_attribute("value")
         # names will be used in linear concatenation, so if empty then set it to None
         firstname = wd.find_element_by_name("firstname").get_attribute("value") or None
         middlename = wd.find_element_by_name("middlename").get_attribute("value") or None
@@ -187,7 +214,7 @@ class ContactHelper():
         email3 = wd.find_element_by_name("email3").get_attribute("value")
         allemails = self.merge_emails_like_on_homepage(Contact(email=email, email2=email2, email3=email3))
 
-        return Contact(first_name=firstname, middle_name=middlename, last_name=lastname, id=id,
+        return Contact(first_name=firstname, middle_name=middlename, last_name=lastname, id=cnt_id,
                        home_phone=homephone, mobile_phone=mobilephone,
                        work_phone=workphone, secondary_phone=secondaryphone,
                        address=address, all_phones=allphones, all_emails=allemails)
