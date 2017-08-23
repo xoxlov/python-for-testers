@@ -32,6 +32,10 @@ class ContactHelper():
         self.return_to_homepage()
         self.contact_cache = None
 
+    def add_new_test_user(self, description):
+        contact = Contact(first_name=description, last_name=description)
+        self.add_new(contact)
+
     def update_contact_by_index(self, contact, index=0):
         wd = self.app.wd
         self.open_contacts_page()
@@ -255,3 +259,20 @@ class ContactHelper():
                                   filter(lambda x: x is not None,
                                          [contact.email, contact.email2, contact.email3])))
         return emails if emails != "" else None
+
+    def add_contact_to_group(self, cnt_id, gr_id):
+        wd = self.app.wd
+        self.open_contacts_page()
+        self._select_contact_by_id(cnt_id)
+        wd.find_element_by_name("to_group").find_element_by_css_selector("option[value='%s']" % gr_id).click()
+        wd.find_element_by_name("add").click()
+        self.return_to_homepage()
+
+    def delete_contact_from_group(self, cnt_id, gr_id):
+        wd = self.app.wd
+        self.open_contacts_page()
+        wd.find_element_by_css_selector("a[href='view.php?id=%s']" % cnt_id).click()
+        wd.find_element_by_css_selector("a[href='./index.php?group=%s']" % gr_id).click()
+        self._select_contact_by_id(cnt_id)
+        wd.find_element_by_name("remove").click()
+        self.return_to_homepage()

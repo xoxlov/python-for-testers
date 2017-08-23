@@ -5,7 +5,7 @@ import random
 
 def test_delete_random_contact(app, db, check_ui):
     if len(db.get_contact_list()) == 0:
-        app.contact.add_new(Contact(first_name="Name to be deleted", last_name="Name to be deleted"))
+        app.contact.add_new_test_user("Name to be deleted")
     old_contacts = db.get_contact_list()
     contact = random.choice(old_contacts)
     app.contact.delete_contact_by_id(contact.id)
@@ -19,7 +19,7 @@ def test_delete_random_contact(app, db, check_ui):
 
 def test_delete_all_contacts(app, db):
     if len(db.get_contact_list()) == 0:
-        app.contact.create(Contact(first_name="Name to be deleted", last_name="Name to be deleted"))
+        app.contact.add_new_test_user("Name to be deleted")
     app.contact.delete_all_contacts()
     new_contacts = db.get_contact_list()
     assert len(new_contacts) == 0

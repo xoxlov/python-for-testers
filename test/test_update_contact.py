@@ -6,7 +6,7 @@ import random
 
 def test_update_random_contact(app, db, check_ui):
     if len(db.get_group_list()) == 0:
-        app.contact.add_new(Contact(first_name="Name to be updated", last_name="Name to be updated"))
+        app.contact.add_new_test_user("Name to be updated")
     old_contacts = db.get_contact_list()
     contact_to_update = random.choice(old_contacts)
     contact = Contact(id=contact_to_update.id,
@@ -49,7 +49,7 @@ def test_update_all_empty_contacts(app):
 
 def test_update_random_contact_name(app):
     if app.contact.count() == 0:
-        app.contact.add_new(Contact(first_name="Name to be updated", last_name="Name to be updated"))
+        app.contact.add_new_test_user("Name to be updated")
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
     contact = Contact(first_name="Alexey")
