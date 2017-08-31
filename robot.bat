@@ -1,0 +1,1 @@
+pybot --outputdir rf\logs rf\group_scenarios.robot

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 2.9 (Python 3.6.0 on win32)" generated="20170831 20:22:44.617">
+<suite id="s1" name="Group Scenarios" source="D:\work\courses\python-for-testers\rf\group_scenarios.robot">
+<kw name="Init Fixtures" library="rf.AddressBook" type="setup">
+<status status="PASS" starttime="20170831 20:22:44.918" endtime="20170831 20:22:50.597"></status>
+</kw>
+<test id="s1-t1" name="Add new group">
+<kw name="Get Group List" library="rf.AddressBook">
+<assign>
+<var>${old_list}</var>
+</assign>
+<msg timestamp="20170831 20:22:50.599" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
+<msg timestamp="20170831 20:22:50.599" level="INFO">SELECT `g`.`group_id`, `g`.`group_name`, `g`.`group_header`, `g`.`group_footer`
+FROM `group_list` `g`</msg>
+<msg timestamp="20170831 20:22:50.609" level="INFO">COMMIT</msg>
+<msg timestamp="20170831 20:22:50.609" level="INFO">RELEASE CONNECTION</msg>
+<msg timestamp="20170831 20:22:50.610" level="INFO">${old_list} = [5: 'NameI'; 'Header-aj&lt;&amp;ns'; 'FooternXOgs[rSt', 10: 'NameFI F?f7+'; 'Header T=# M#6 (Or'; 'FooterPL^hA"f xd', 11: 'Name=V1$X7'; 'HeaderS'; 'FooterjNQKeHxR9@', 13: 'name1'; 'header1'; 'footer1', 14: '...</msg>
+<status status="PASS" starttime="20170831 20:22:50.598" endtime="20170831 20:22:50.610"></status>
+</kw>
+<kw name="New Group" library="rf.AddressBook">
+<arguments>
+<arg>name1</arg>
+<arg>header1</arg>
+<arg>footer1</arg>
+</arguments>
+<assign>
+<var>${group}</var>
+</assign>
+<msg timestamp="20170831 20:22:50.611" level="INFO">${group} = None: 'name1'; 'header1'; 'footer1'</msg>
+<status status="PASS" starttime="20170831 20:22:50.611" endtime="20170831 20:22:50.611"></status>
+</kw>
+<kw name="Create Group" library="rf.AddressBook">
+<arguments>
+<arg>${group}</arg>
+</arguments>
+<status status="PASS" starttime="20170831 20:22:50.612" endtime="20170831 20:22:52.990"></status>
+</kw>
+<kw name="Get Group List" library="rf.AddressBook">
+<assign>
+<var>${new_list}</var>
+</assign>
+<msg timestamp="20170831 20:22:52.992" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
+<msg timestamp="20170831 20:22:52.992" level="INFO">SELECT `g`.`group_id`, `g`.`group_name`, `g`.`group_header`, `g`.`group_footer`
+FROM `group_list` `g`</msg>
+<msg timestamp="20170831 20:22:53.002" level="INFO">COMMIT</msg>
+<msg timestamp="20170831 20:22:53.002" level="INFO">RELEASE CONNECTION</msg>
+<msg timestamp="20170831 20:22:53.003" level="INFO">${new_list} = [5: 'NameI'; 'Header-aj&lt;&amp;ns'; 'FooternXOgs[rSt', 10: 'NameFI F?f7+'; 'Header T=# M#6 (Or'; 'FooterPL^hA"f xd', 11: 'Name=V1$X7'; 'HeaderS'; 'FooterjNQKeHxR9@', 13: 'name1'; 'header1'; 'footer1', 14: '...</msg>
+<status status="PASS" starttime="20170831 20:22:52.991" endtime="20170831 20:22:53.003"></status>
+</kw>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${old_list}</arg>
+<arg>${group}</arg>
+</arguments>
+<status status="PASS" starttime="20170831 20:22:53.004" endtime="20170831 20:22:53.004"></status>
+</kw>
+<kw name="Group Lists Should Be Equal" library="rf.AddressBook">
+<arguments>
+<arg>${new_list}</arg>
+<arg>${old_list}</arg>
+</arguments>
+<status status="PASS" starttime="20170831 20:22:53.005" endtime="20170831 20:22:53.006"></status>
+</kw>
+<status status="PASS" starttime="20170831 20:22:50.597" endtime="20170831 20:22:53.006" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Delete group">
+<kw name="Get Group List" library="rf.AddressBook">
+<assign>
+<var>${old_list}</var>
+</assign>
+<msg timestamp="20170831 20:22:53.010" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
+<msg timestamp="20170831 20:22:53.010" level="INFO">SELECT `g`.`group_id`, `g`.`group_name`, `g`.`group_header`, `g`.`group_footer`
+FROM `group_list` `g`</msg>
+<msg timestamp="20170831 20:22:53.023" level="INFO">COMMIT</msg>
+<msg timestamp="20170831 20:22:53.024" level="INFO">RELEASE CONNECTION</msg>
+<msg timestamp="20170831 20:22:53.025" level="INFO">${old_list} = [5: 'NameI'; 'Header-aj&lt;&amp;ns'; 'FooternXOgs[rSt', 10: 'NameFI F?f7+'; 'Header T=# M#6 (Or'; 'FooterPL^hA"f xd', 11: 'Name=V1$X7'; 'HeaderS'; 'FooterjNQKeHxR9@', 13: 'name1'; 'header1'; 'footer1', 14: '...</msg>
+<status status="PASS" starttime="20170831 20:22:53.009" endtime="20170831 20:22:53.025"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${old_list}</arg>
+</arguments>
+<assign>
+<var>${len}</var>
+</assign>
+<msg timestamp="20170831 20:22:53.026" level="INFO">Length is 78</msg>
+<msg timestamp="20170831 20:22:53.026" level="INFO">${len} = 78</msg>
+<status status="PASS" starttime="20170831 20:22:53.026" endtime="20170831 20:22:53.026"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>random.randrange(${len})</arg>
+<arg>random</arg>
+</arguments>
+<assign>
+<var>${index}</var>
+</assign>
+<msg timestamp="20170831 20:22:53.040" level="INFO">${index} = 30</msg>
+<status status="PASS" starttime="20170831 20:22:53.027" endtime="20170831 20:22:53.040"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${old_list}</arg>
+<arg>${index}</arg>
+</arguments>
+<assign>
+<var>${group}</var>
+</assign>
+<msg timestamp="20170831 20:22:53.042" level="INFO">${group} = 49: 'NameJx.'; 'Header @e'; 'Footer3Qv$.U{'</msg>
+<status status="PASS" starttime="20170831 20:22:53.041" endtime="20170831 20:22:53.042"></status>
+</kw>
+<kw name="Delete Group" library="rf.AddressBook">
+<arguments>
+<arg>${group}</arg>
+</arguments>
+<status status="PASS" starttime="20170831 20:22:53.042" endtime="20170831 20:22:54.287"></status>
+</kw>
+<kw name="Get Group List" library="rf.AddressBook">
+<assign>
+<var>${new_list}</var>
+</assign>
+<msg timestamp="20170831 20:22:54.288" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
+<msg timestamp="20170831 20:22:54.289" level="INFO">SELECT `g`.`group_id`, `g`.`group_name`, `g`.`group_header`, `g`.`group_footer`
+FROM `group_list` `g`</msg>
+<msg timestamp="20170831 20:22:54.298" level="INFO">COMMIT</msg>
+<msg timestamp="20170831 20:22:54.299" level="INFO">RELEASE CONNECTION</msg>
+<msg timestamp="20170831 20:22:54.299" level="INFO">${new_list} = [5: 'NameI'; 'Header-aj&lt;&amp;ns'; 'FooternXOgs[rSt', 10: 'NameFI F?f7+'; 'Header T=# M#6 (Or'; 'FooterPL^hA"f xd', 11: 'Name=V1$X7'; 'HeaderS'; 'FooterjNQKeHxR9@', 13: 'name1'; 'header1'; 'footer1', 14: '...</msg>
+<status status="PASS" starttime="20170831 20:22:54.288" endtime="20170831 20:22:54.299"></status>
+</kw>
+<kw name="Remove Values From List" library="Collections">
+<doc>Removes all occurrences of given ``values`` from ``list``.</doc>
+<arguments>
+<arg>${old_list}</arg>
+<arg>${group}</arg>
+</arguments>
+<status status="PASS" starttime="20170831 20:22:54.300" endtime="20170831 20:22:54.301"></status>
+</kw>
+<kw name="Group Lists Should Be Equal" library="rf.AddressBook">
+<arguments>
+<arg>${new_list}</arg>
+<arg>${old_list}</arg>
+</arguments>
+<status status="PASS" starttime="20170831 20:22:54.301" endtime="20170831 20:22:54.302"></status>
+</kw>
+<status status="PASS" starttime="20170831 20:22:53.008" endtime="20170831 20:22:54.302" critical="yes"></status>
+</test>
+<kw name="Destroy Fixtures" library="rf.AddressBook" type="teardown">
+<status status="PASS" starttime="20170831 20:22:54.305" endtime="20170831 20:22:57.387"></status>
+</kw>
+<status status="PASS" starttime="20170831 20:22:44.617" endtime="20170831 20:22:57.387"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0">Critical Tests</stat>
+<stat pass="2" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" id="s1" name="Group Scenarios">Group Scenarios</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
