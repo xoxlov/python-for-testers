@@ -1,81 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 2.9 (Python 3.6.0 on win32)" generated="20170831 20:22:44.617">
-<suite id="s1" name="Group Scenarios" source="D:\work\courses\python-for-testers\rf\group_scenarios.robot">
-<kw name="Init Fixtures" library="rf.AddressBook" type="setup">
-<status status="PASS" starttime="20170831 20:22:44.918" endtime="20170831 20:22:50.597"></status>
+<robot generator="Robot 2.9 (Python 3.6.0 on win32)" generated="20170831 21:00:16.273">
+<suite id="s1" name="Contact Scenarios" source="D:\work\courses\python-for-testers\rf\contact_scenarios.robot">
+<kw name="Init Fixtures" library="rf.ContactBook" type="setup">
+<status status="PASS" starttime="20170831 21:00:16.573" endtime="20170831 21:00:22.495"></status>
 </kw>
-<test id="s1-t1" name="Add new group">
-<kw name="Get Group List" library="rf.AddressBook">
+<test id="s1-t1" name="Add new contact">
+<kw name="Get Contact List" library="rf.ContactBook">
 <assign>
 <var>${old_list}</var>
 </assign>
-<msg timestamp="20170831 20:22:50.599" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
-<msg timestamp="20170831 20:22:50.599" level="INFO">SELECT `g`.`group_id`, `g`.`group_name`, `g`.`group_header`, `g`.`group_footer`
-FROM `group_list` `g`</msg>
-<msg timestamp="20170831 20:22:50.609" level="INFO">COMMIT</msg>
-<msg timestamp="20170831 20:22:50.609" level="INFO">RELEASE CONNECTION</msg>
-<msg timestamp="20170831 20:22:50.610" level="INFO">${old_list} = [5: 'NameI'; 'Header-aj&lt;&amp;ns'; 'FooternXOgs[rSt', 10: 'NameFI F?f7+'; 'Header T=# M#6 (Or'; 'FooterPL^hA"f xd', 11: 'Name=V1$X7'; 'HeaderS'; 'FooterjNQKeHxR9@', 13: 'name1'; 'header1'; 'footer1', 14: '...</msg>
-<status status="PASS" starttime="20170831 20:22:50.598" endtime="20170831 20:22:50.610"></status>
+<msg timestamp="20170831 21:00:22.498" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
+<msg timestamp="20170831 21:00:22.499" level="INFO">SELECT `c`.`id`, `c`.`firstname`, `c`.`lastname`, `c`.`address`, `c`.`home`, `c`.`mobile`, `c`.`work`, `c`.`email`, `c`.`email2`, `c`.`email3`, `c`.`deprecated`
+FROM `addressbook` `c`
+WHERE `c`.`deprecated` IS NULL</msg>
+<msg timestamp="20170831 21:00:22.511" level="INFO">COMMIT</msg>
+<msg timestamp="20170831 21:00:22.512" level="INFO">RELEASE CONNECTION</msg>
+<msg timestamp="20170831 21:00:22.513" level="INFO">${old_list} = [462: , 463: Bd8uD N, 464: bd_year, 466: middlename, 468: Alexander Pavlov, 469: address, 470: work_phone, 471: mobile_phone, 472: home_phone, 473: fax, 474: title, 477: homepage, 478: SecAddr, 479: S...</msg>
+<status status="PASS" starttime="20170831 21:00:22.497" endtime="20170831 21:00:22.513"></status>
 </kw>
-<kw name="New Group" library="rf.AddressBook">
+<kw name="New Contact" library="rf.ContactBook">
 <arguments>
-<arg>name1</arg>
-<arg>header1</arg>
-<arg>footer1</arg>
+<arg>FirstName1</arg>
+<arg>LastName1</arg>
 </arguments>
 <assign>
-<var>${group}</var>
+<var>${contact}</var>
 </assign>
-<msg timestamp="20170831 20:22:50.611" level="INFO">${group} = None: 'name1'; 'header1'; 'footer1'</msg>
-<status status="PASS" starttime="20170831 20:22:50.611" endtime="20170831 20:22:50.611"></status>
+<msg timestamp="20170831 21:00:22.514" level="INFO">${contact} = None: FirstName1; last_name: LastName1</msg>
+<status status="PASS" starttime="20170831 21:00:22.513" endtime="20170831 21:00:22.514"></status>
 </kw>
-<kw name="Create Group" library="rf.AddressBook">
+<kw name="Create Contact" library="rf.ContactBook">
 <arguments>
-<arg>${group}</arg>
+<arg>${contact}</arg>
 </arguments>
-<status status="PASS" starttime="20170831 20:22:50.612" endtime="20170831 20:22:52.990"></status>
+<status status="PASS" starttime="20170831 21:00:22.514" endtime="20170831 21:00:24.096"></status>
 </kw>
-<kw name="Get Group List" library="rf.AddressBook">
+<kw name="Get Contact List" library="rf.ContactBook">
 <assign>
 <var>${new_list}</var>
 </assign>
-<msg timestamp="20170831 20:22:52.992" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
-<msg timestamp="20170831 20:22:52.992" level="INFO">SELECT `g`.`group_id`, `g`.`group_name`, `g`.`group_header`, `g`.`group_footer`
-FROM `group_list` `g`</msg>
-<msg timestamp="20170831 20:22:53.002" level="INFO">COMMIT</msg>
-<msg timestamp="20170831 20:22:53.002" level="INFO">RELEASE CONNECTION</msg>
-<msg timestamp="20170831 20:22:53.003" level="INFO">${new_list} = [5: 'NameI'; 'Header-aj&lt;&amp;ns'; 'FooternXOgs[rSt', 10: 'NameFI F?f7+'; 'Header T=# M#6 (Or'; 'FooterPL^hA"f xd', 11: 'Name=V1$X7'; 'HeaderS'; 'FooterjNQKeHxR9@', 13: 'name1'; 'header1'; 'footer1', 14: '...</msg>
-<status status="PASS" starttime="20170831 20:22:52.991" endtime="20170831 20:22:53.003"></status>
+<msg timestamp="20170831 21:00:24.097" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
+<msg timestamp="20170831 21:00:24.098" level="INFO">SELECT `c`.`id`, `c`.`firstname`, `c`.`lastname`, `c`.`address`, `c`.`home`, `c`.`mobile`, `c`.`work`, `c`.`email`, `c`.`email2`, `c`.`email3`, `c`.`deprecated`
+FROM `addressbook` `c`
+WHERE `c`.`deprecated` IS NULL</msg>
+<msg timestamp="20170831 21:00:24.112" level="INFO">COMMIT</msg>
+<msg timestamp="20170831 21:00:24.113" level="INFO">RELEASE CONNECTION</msg>
+<msg timestamp="20170831 21:00:24.113" level="INFO">${new_list} = [462: , 463: Bd8uD N, 464: bd_year, 466: middlename, 468: Alexander Pavlov, 469: address, 470: work_phone, 471: mobile_phone, 472: home_phone, 473: fax, 474: title, 477: homepage, 478: SecAddr, 479: S...</msg>
+<status status="PASS" starttime="20170831 21:00:24.097" endtime="20170831 21:00:24.113"></status>
 </kw>
 <kw name="Append To List" library="Collections">
 <doc>Adds ``values`` to the end of ``list``.</doc>
 <arguments>
 <arg>${old_list}</arg>
-<arg>${group}</arg>
+<arg>${contact}</arg>
 </arguments>
-<status status="PASS" starttime="20170831 20:22:53.004" endtime="20170831 20:22:53.004"></status>
+<status status="PASS" starttime="20170831 21:00:24.114" endtime="20170831 21:00:24.114"></status>
 </kw>
-<kw name="Group Lists Should Be Equal" library="rf.AddressBook">
+<kw name="Contact Lists Should Be Equal" library="rf.ContactBook">
 <arguments>
 <arg>${new_list}</arg>
 <arg>${old_list}</arg>
 </arguments>
-<status status="PASS" starttime="20170831 20:22:53.005" endtime="20170831 20:22:53.006"></status>
+<status status="PASS" starttime="20170831 21:00:24.115" endtime="20170831 21:00:24.116"></status>
 </kw>
-<status status="PASS" starttime="20170831 20:22:50.597" endtime="20170831 20:22:53.006" critical="yes"></status>
+<status status="PASS" starttime="20170831 21:00:22.495" endtime="20170831 21:00:24.116" critical="yes"></status>
 </test>
-<test id="s1-t2" name="Delete group">
-<kw name="Get Group List" library="rf.AddressBook">
+<test id="s1-t2" name="Delete contact">
+<kw name="Get Contact List" library="rf.ContactBook">
 <assign>
 <var>${old_list}</var>
 </assign>
-<msg timestamp="20170831 20:22:53.010" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
-<msg timestamp="20170831 20:22:53.010" level="INFO">SELECT `g`.`group_id`, `g`.`group_name`, `g`.`group_header`, `g`.`group_footer`
-FROM `group_list` `g`</msg>
-<msg timestamp="20170831 20:22:53.023" level="INFO">COMMIT</msg>
-<msg timestamp="20170831 20:22:53.024" level="INFO">RELEASE CONNECTION</msg>
-<msg timestamp="20170831 20:22:53.025" level="INFO">${old_list} = [5: 'NameI'; 'Header-aj&lt;&amp;ns'; 'FooternXOgs[rSt', 10: 'NameFI F?f7+'; 'Header T=# M#6 (Or'; 'FooterPL^hA"f xd', 11: 'Name=V1$X7'; 'HeaderS'; 'FooterjNQKeHxR9@', 13: 'name1'; 'header1'; 'footer1', 14: '...</msg>
-<status status="PASS" starttime="20170831 20:22:53.009" endtime="20170831 20:22:53.025"></status>
+<msg timestamp="20170831 21:00:24.118" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
+<msg timestamp="20170831 21:00:24.119" level="INFO">SELECT `c`.`id`, `c`.`firstname`, `c`.`lastname`, `c`.`address`, `c`.`home`, `c`.`mobile`, `c`.`work`, `c`.`email`, `c`.`email2`, `c`.`email3`, `c`.`deprecated`
+FROM `addressbook` `c`
+WHERE `c`.`deprecated` IS NULL</msg>
+<msg timestamp="20170831 21:00:24.138" level="INFO">COMMIT</msg>
+<msg timestamp="20170831 21:00:24.138" level="INFO">RELEASE CONNECTION</msg>
+<msg timestamp="20170831 21:00:24.139" level="INFO">${old_list} = [462: , 463: Bd8uD N, 464: bd_year, 466: middlename, 468: Alexander Pavlov, 469: address, 470: work_phone, 471: mobile_phone, 472: home_phone, 473: fax, 474: title, 477: homepage, 478: SecAddr, 479: S...</msg>
+<status status="PASS" starttime="20170831 21:00:24.118" endtime="20170831 21:00:24.139"></status>
 </kw>
 <kw name="Get Length" library="BuiltIn">
 <doc>Returns and logs the length of the given item as an integer.</doc>
@@ -85,9 +87,9 @@ FROM `group_list` `g`</msg>
 <assign>
 <var>${len}</var>
 </assign>
-<msg timestamp="20170831 20:22:53.026" level="INFO">Length is 78</msg>
-<msg timestamp="20170831 20:22:53.026" level="INFO">${len} = 78</msg>
-<status status="PASS" starttime="20170831 20:22:53.026" endtime="20170831 20:22:53.026"></status>
+<msg timestamp="20170831 21:00:24.140" level="INFO">Length is 59</msg>
+<msg timestamp="20170831 21:00:24.140" level="INFO">${len} = 59</msg>
+<status status="PASS" starttime="20170831 21:00:24.140" endtime="20170831 21:00:24.141"></status>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <doc>Evaluates the given expression in Python and returns the results.</doc>
@@ -98,8 +100,8 @@ FROM `group_list` `g`</msg>
 <assign>
 <var>${index}</var>
 </assign>
-<msg timestamp="20170831 20:22:53.040" level="INFO">${index} = 30</msg>
-<status status="PASS" starttime="20170831 20:22:53.027" endtime="20170831 20:22:53.040"></status>
+<msg timestamp="20170831 21:00:24.151" level="INFO">${index} = 16</msg>
+<status status="PASS" starttime="20170831 21:00:24.141" endtime="20170831 21:00:24.151"></status>
 </kw>
 <kw name="Get From List" library="Collections">
 <doc>Returns the value specified with an ``index`` from ``list``.</doc>
@@ -108,60 +110,159 @@ FROM `group_list` `g`</msg>
 <arg>${index}</arg>
 </arguments>
 <assign>
-<var>${group}</var>
+<var>${contact}</var>
 </assign>
-<msg timestamp="20170831 20:22:53.042" level="INFO">${group} = 49: 'NameJx.'; 'Header @e'; 'Footer3Qv$.U{'</msg>
-<status status="PASS" starttime="20170831 20:22:53.041" endtime="20170831 20:22:53.042"></status>
+<msg timestamp="20170831 21:00:24.152" level="INFO">${contact} = 482: FirstNameUpdated; last_name: LastNameUpdated; email2: email2mjgTjAl; full_name: FirstNameUpdated LastNameUpdated</msg>
+<status status="PASS" starttime="20170831 21:00:24.151" endtime="20170831 21:00:24.152"></status>
 </kw>
-<kw name="Delete Group" library="rf.AddressBook">
+<kw name="Delete Contact" library="rf.ContactBook">
 <arguments>
-<arg>${group}</arg>
+<arg>${contact}</arg>
 </arguments>
-<status status="PASS" starttime="20170831 20:22:53.042" endtime="20170831 20:22:54.287"></status>
+<status status="PASS" starttime="20170831 21:00:24.152" endtime="20170831 21:00:24.973"></status>
 </kw>
-<kw name="Get Group List" library="rf.AddressBook">
+<kw name="Get Contact List" library="rf.ContactBook">
 <assign>
 <var>${new_list}</var>
 </assign>
-<msg timestamp="20170831 20:22:54.288" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
-<msg timestamp="20170831 20:22:54.289" level="INFO">SELECT `g`.`group_id`, `g`.`group_name`, `g`.`group_header`, `g`.`group_footer`
-FROM `group_list` `g`</msg>
-<msg timestamp="20170831 20:22:54.298" level="INFO">COMMIT</msg>
-<msg timestamp="20170831 20:22:54.299" level="INFO">RELEASE CONNECTION</msg>
-<msg timestamp="20170831 20:22:54.299" level="INFO">${new_list} = [5: 'NameI'; 'Header-aj&lt;&amp;ns'; 'FooternXOgs[rSt', 10: 'NameFI F?f7+'; 'Header T=# M#6 (Or'; 'FooterPL^hA"f xd', 11: 'Name=V1$X7'; 'HeaderS'; 'FooterjNQKeHxR9@', 13: 'name1'; 'header1'; 'footer1', 14: '...</msg>
-<status status="PASS" starttime="20170831 20:22:54.288" endtime="20170831 20:22:54.299"></status>
+<msg timestamp="20170831 21:00:24.974" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
+<msg timestamp="20170831 21:00:24.974" level="INFO">SELECT `c`.`id`, `c`.`firstname`, `c`.`lastname`, `c`.`address`, `c`.`home`, `c`.`mobile`, `c`.`work`, `c`.`email`, `c`.`email2`, `c`.`email3`, `c`.`deprecated`
+FROM `addressbook` `c`
+WHERE `c`.`deprecated` IS NULL</msg>
+<msg timestamp="20170831 21:00:24.991" level="INFO">COMMIT</msg>
+<msg timestamp="20170831 21:00:24.991" level="INFO">RELEASE CONNECTION</msg>
+<msg timestamp="20170831 21:00:24.992" level="INFO">${new_list} = [462: , 463: Bd8uD N, 464: bd_year, 466: middlename, 468: Alexander Pavlov, 469: address, 470: work_phone, 471: mobile_phone, 472: home_phone, 473: fax, 474: title, 477: homepage, 478: SecAddr, 479: S...</msg>
+<status status="PASS" starttime="20170831 21:00:24.973" endtime="20170831 21:00:24.992"></status>
 </kw>
 <kw name="Remove Values From List" library="Collections">
 <doc>Removes all occurrences of given ``values`` from ``list``.</doc>
 <arguments>
 <arg>${old_list}</arg>
-<arg>${group}</arg>
+<arg>${contact}</arg>
 </arguments>
-<status status="PASS" starttime="20170831 20:22:54.300" endtime="20170831 20:22:54.301"></status>
+<status status="PASS" starttime="20170831 21:00:24.993" endtime="20170831 21:00:24.993"></status>
 </kw>
-<kw name="Group Lists Should Be Equal" library="rf.AddressBook">
+<kw name="Contact Lists Should Be Equal" library="rf.ContactBook">
 <arguments>
 <arg>${new_list}</arg>
 <arg>${old_list}</arg>
 </arguments>
-<status status="PASS" starttime="20170831 20:22:54.301" endtime="20170831 20:22:54.302"></status>
+<status status="PASS" starttime="20170831 21:00:24.994" endtime="20170831 21:00:24.994"></status>
 </kw>
-<status status="PASS" starttime="20170831 20:22:53.008" endtime="20170831 20:22:54.302" critical="yes"></status>
+<status status="PASS" starttime="20170831 21:00:24.117" endtime="20170831 21:00:24.995" critical="yes"></status>
 </test>
-<kw name="Destroy Fixtures" library="rf.AddressBook" type="teardown">
-<status status="PASS" starttime="20170831 20:22:54.305" endtime="20170831 20:22:57.387"></status>
+<test id="s1-t3" name="Update contact">
+<kw name="Get Contact List" library="rf.ContactBook">
+<assign>
+<var>${old_list}</var>
+</assign>
+<msg timestamp="20170831 21:00:24.997" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
+<msg timestamp="20170831 21:00:24.998" level="INFO">SELECT `c`.`id`, `c`.`firstname`, `c`.`lastname`, `c`.`address`, `c`.`home`, `c`.`mobile`, `c`.`work`, `c`.`email`, `c`.`email2`, `c`.`email3`, `c`.`deprecated`
+FROM `addressbook` `c`
+WHERE `c`.`deprecated` IS NULL</msg>
+<msg timestamp="20170831 21:00:25.010" level="INFO">COMMIT</msg>
+<msg timestamp="20170831 21:00:25.010" level="INFO">RELEASE CONNECTION</msg>
+<msg timestamp="20170831 21:00:25.011" level="INFO">${old_list} = [462: , 463: Bd8uD N, 464: bd_year, 466: middlename, 468: Alexander Pavlov, 469: address, 470: work_phone, 471: mobile_phone, 472: home_phone, 473: fax, 474: title, 477: homepage, 478: SecAddr, 479: S...</msg>
+<status status="PASS" starttime="20170831 21:00:24.997" endtime="20170831 21:00:25.011"></status>
 </kw>
-<status status="PASS" starttime="20170831 20:22:44.617" endtime="20170831 20:22:57.387"></status>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${old_list}</arg>
+</arguments>
+<assign>
+<var>${len}</var>
+</assign>
+<msg timestamp="20170831 21:00:25.013" level="INFO">Length is 58</msg>
+<msg timestamp="20170831 21:00:25.013" level="INFO">${len} = 58</msg>
+<status status="PASS" starttime="20170831 21:00:25.012" endtime="20170831 21:00:25.013"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>random.randrange(${len})</arg>
+<arg>random</arg>
+</arguments>
+<assign>
+<var>${index}</var>
+</assign>
+<msg timestamp="20170831 21:00:25.015" level="INFO">${index} = 39</msg>
+<status status="PASS" starttime="20170831 21:00:25.014" endtime="20170831 21:00:25.015"></status>
+</kw>
+<kw name="Get From List" library="Collections">
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<arguments>
+<arg>${old_list}</arg>
+<arg>${index}</arg>
+</arguments>
+<assign>
+<var>${contact_to_update}</var>
+</assign>
+<msg timestamp="20170831 21:00:25.016" level="INFO">${contact_to_update} = 511: email; email: A nV yvIZe@.A28; full_name: email</msg>
+<status status="PASS" starttime="20170831 21:00:25.015" endtime="20170831 21:00:25.016"></status>
+</kw>
+<kw name="New Contact" library="rf.ContactBook">
+<arguments>
+<arg>FirstNameUpdated</arg>
+<arg>LastNameUpdated</arg>
+</arguments>
+<assign>
+<var>${contact_with_new_data}</var>
+</assign>
+<msg timestamp="20170831 21:00:25.017" level="INFO">${contact_with_new_data} = None: FirstNameUpdated; last_name: LastNameUpdated</msg>
+<status status="PASS" starttime="20170831 21:00:25.016" endtime="20170831 21:00:25.017"></status>
+</kw>
+<kw name="Update Contact" library="rf.ContactBook">
+<arguments>
+<arg>${contact_to_update}</arg>
+<arg>${contact_with_new_data}</arg>
+</arguments>
+<status status="PASS" starttime="20170831 21:00:25.017" endtime="20170831 21:00:26.901"></status>
+</kw>
+<kw name="Get Contact List" library="rf.ContactBook">
+<assign>
+<var>${new_list}</var>
+</assign>
+<msg timestamp="20170831 21:00:26.902" level="INFO">GET CONNECTION FROM THE LOCAL POOL</msg>
+<msg timestamp="20170831 21:00:26.903" level="INFO">SELECT `c`.`id`, `c`.`firstname`, `c`.`lastname`, `c`.`address`, `c`.`home`, `c`.`mobile`, `c`.`work`, `c`.`email`, `c`.`email2`, `c`.`email3`, `c`.`deprecated`
+FROM `addressbook` `c`
+WHERE `c`.`deprecated` IS NULL</msg>
+<msg timestamp="20170831 21:00:26.918" level="INFO">COMMIT</msg>
+<msg timestamp="20170831 21:00:26.918" level="INFO">RELEASE CONNECTION</msg>
+<msg timestamp="20170831 21:00:26.919" level="INFO">${new_list} = [462: , 463: Bd8uD N, 464: bd_year, 466: middlename, 468: Alexander Pavlov, 469: address, 470: work_phone, 471: mobile_phone, 472: home_phone, 473: fax, 474: title, 477: homepage, 478: SecAddr, 479: S...</msg>
+<status status="PASS" starttime="20170831 21:00:26.902" endtime="20170831 21:00:26.919"></status>
+</kw>
+<kw name="Update Value In List" library="rf.ContactBook">
+<arguments>
+<arg>${old_list}</arg>
+<arg>${contact_to_update}</arg>
+<arg>${contact_with_new_data}</arg>
+</arguments>
+<status status="PASS" starttime="20170831 21:00:26.920" endtime="20170831 21:00:26.920"></status>
+</kw>
+<kw name="Contact Lists Should Be Equal" library="rf.ContactBook">
+<arguments>
+<arg>${new_list}</arg>
+<arg>${old_list}</arg>
+</arguments>
+<status status="PASS" starttime="20170831 21:00:26.921" endtime="20170831 21:00:26.922"></status>
+</kw>
+<status status="PASS" starttime="20170831 21:00:24.996" endtime="20170831 21:00:26.923" critical="yes"></status>
+</test>
+<kw name="Destroy Fixtures" library="rf.ContactBook" type="teardown">
+<status status="PASS" starttime="20170831 21:00:26.925" endtime="20170831 21:00:30.021"></status>
+</kw>
+<status status="PASS" starttime="20170831 21:00:16.291" endtime="20170831 21:00:30.021"></status>
 </suite>
 <statistics>
 <total>
-<stat pass="2" fail="0">Critical Tests</stat>
-<stat pass="2" fail="0">All Tests</stat>
+<stat pass="3" fail="0">Critical Tests</stat>
+<stat pass="3" fail="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="2" fail="0" id="s1" name="Group Scenarios">Group Scenarios</stat>
+<stat pass="3" fail="0" id="s1" name="Contact Scenarios">Contact Scenarios</stat>
 </suite>
 </statistics>
 <errors>
