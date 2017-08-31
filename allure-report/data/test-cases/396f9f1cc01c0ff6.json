@@ -1,0 +1,131 @@
+{
+  "uid" : "396f9f1cc01c0ff6",
+  "name" : "test_add_group[None: 'Name;V\"'; 'HeaderJ9'; 'FooterQ  ']",
+  "fullName" : "test/test_add_group#test_add_group[None: 'Name;V\"'; 'HeaderJ9'; 'FooterQ  ']",
+  "historyId" : "56d15c07728e9e3eea4f1943e07540c4",
+  "time" : {
+    "start" : 1504197033780,
+    "stop" : 1504197035731,
+    "duration" : 1951
+  },
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ {
+    "name" : "stop",
+    "time" : {
+      "start" : 1504197019411,
+      "stop" : 1504197019411,
+      "duration" : 0
+    },
+    "status" : "unknown",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "app",
+    "time" : {
+      "start" : 1504197033680,
+      "stop" : 1504197033779,
+      "duration" : 99
+    },
+    "status" : "unknown",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "check_ui",
+    "time" : {
+      "start" : 1504197027326,
+      "stop" : 1504197027326,
+      "duration" : 0
+    },
+    "status" : "unknown",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "db",
+    "time" : {
+      "start" : 1504197027294,
+      "stop" : 1504197027325,
+      "duration" : 31
+    },
+    "status" : "unknown",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "stop::fin",
+    "time" : {
+      "start" : 1504197038989,
+      "stop" : 1504197039518,
+      "duration" : 529
+    },
+    "status" : "unknown",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "db::fin",
+    "time" : {
+      "start" : 1504197038987,
+      "stop" : 1504197038987,
+      "duration" : 0
+    },
+    "status" : "unknown",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "test/test_add_group"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "json_groups",
+    "value" : "None: 'Name;V\"'; 'HeaderJ9'; 'FooterQ  '"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "extra" : {
+    "tags" : [ ]
+  },
+  "statusDetailsSafe" : {
+    "flaky" : false
+  },
+  "source" : "396f9f1cc01c0ff6.json",
+  "statusMessage" : {
+    "present" : false
+  },
+  "parameterValues" : [ "None: 'Name;V\"'; 'HeaderJ9'; 'FooterQ  '" ]
+}

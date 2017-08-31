@@ -1,0 +1,57 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: assert [5: 'NameI'; ...:N:jYOI', ...] == [5: 'NameI'; '...:N:jYOI', ...]\n  At index 72 diff: None: 'NameU]v^!7\\w3'; 'HeaderG&{5E 0'; 'Footer*/k5!LE;_c?D9!%<' != 91: 'NameU]v^!7w3'; 'HeaderG&{5E 0'; 'Footer*/k5!LE;_c?D9!%<'\n  Use -v to get the full diff",
+      "children" : [ {
+        "name" : "test_add_group[None: 'NameU]v^!7\\\\w3'; 'HeaderG&{5E 0'; 'Footer*/k5!LE;_c?D9!%<']",
+        "uid" : "4b3bed0bc1fa1b02",
+        "parentUid" : "4e854161345deaadbc90320073e797aa",
+        "status" : "failed",
+        "time" : {
+          "start" : 1504197914407,
+          "stop" : 1504197916192,
+          "duration" : 1785
+        },
+        "flaky" : true,
+        "parameters" : [ "None: 'NameU]v^!7\\w3'; 'HeaderG&{5E 0'; 'Footer*/k5!LE;_c?D9!%<'" ]
+      } ],
+      "uid" : "4e854161345deaadbc90320073e797aa"
+    }, {
+      "name" : "AssertionError: assert [5: 'NameI'; ...:N:jYOI', ...] == [5: 'NameI'; '...:N:jYOI', ...]\n  Left contains more items, first extra item: None: 'NamepyyTn9K\\'; 'HeaderA'; 'FooterOKipI5,'\n  Use -v to get the full diff",
+      "children" : [ {
+        "name" : "test_add_group[None: 'NamepyyTn9K\\\\'; 'HeaderA'; 'FooterOKipI5,']",
+        "uid" : "57767a2f54907ae5",
+        "parentUid" : "a49c0e31515e0a88ce56d03c021f4682",
+        "status" : "failed",
+        "time" : {
+          "start" : 1504197920005,
+          "stop" : 1504197922147,
+          "duration" : 2142
+        },
+        "flaky" : true,
+        "parameters" : [ "None: 'NamepyyTn9K\\'; 'HeaderA'; 'FooterOKipI5,'" ]
+      } ],
+      "uid" : "a49c0e31515e0a88ce56d03c021f4682"
+    }, {
+      "name" : "AssertionError: assert [5: 'NameI'; ...:N:jYOI', ...] == [5: 'NameI'; '...:N:jYOI', ...]\n  At index 71 diff: None: 'Name l;\\s'; 'Header IB8 ::dDyJ4hEcI'; 'Footer !ok7nlA \\p|z/`' != 90: 'Name l;s'; 'Header IB8 ::dDyJ4hEcI'; 'Footer !ok7nlA p|z/`'\n  Use -v to get the full diff",
+      "children" : [ {
+        "name" : "test_add_group[None: 'Name l;\\\\s'; 'Header IB8 ::dDyJ4hEcI'; 'Footer !ok7nlA \\\\p|z/`']",
+        "uid" : "b828fbfffcd64f96",
+        "parentUid" : "46ac53ecb6d71d1579e1ee67ecc47aa6",
+        "status" : "failed",
+        "time" : {
+          "start" : 1504197912165,
+          "stop" : 1504197914211,
+          "duration" : 2046
+        },
+        "flaky" : true,
+        "parameters" : [ "None: 'Name l;\\s'; 'Header IB8 ::dDyJ4hEcI'; 'Footer !ok7nlA \\p|z/`'" ]
+      } ],
+      "uid" : "46ac53ecb6d71d1579e1ee67ecc47aa6"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ]
+}

@@ -1,0 +1,135 @@
+{
+  "uid" : "efbc952a47f9b6dc",
+  "name" : "test_add_group[None: 'NamepyyTn9K\\\\'; 'HeaderA'; 'FooterOKipI5,']",
+  "fullName" : "test/test_add_group#test_add_group[None: 'NamepyyTn9K\\\\'; 'HeaderA'; 'FooterOKipI5,']",
+  "historyId" : "bc86af87b1d70fcdc4b0e09565b8f122",
+  "time" : {
+    "start" : 1504197037296,
+    "stop" : 1504197038951,
+    "duration" : 1655
+  },
+  "status" : "failed",
+  "statusDetails" : {
+    "message" : "AssertionError: assert [5: 'NameI'; ...:N:jYOI', ...] == [5: 'NameI'; '...:N:jYOI', ...]\n  Left contains more items, first extra item: None: 'NamepyyTn9K\\'; 'HeaderA'; 'FooterOKipI5,'\n  Use -v to get the full diff",
+    "trace" : "app = <fixture.application.Application object at 0x000002056A42C7B8>\ndb = <fixture.orm.ORMFixture object at 0x000002056A451780>\njson_groups = None: 'NamepyyTn9K\\'; 'HeaderA'; 'FooterOKipI5,', check_ui = False\n\n    def test_add_group(app, db, json_groups, check_ui):\n        group = json_groups\n        old_groups = db.get_group_list()\n        app.group.create(group)\n        new_groups = db.get_group_list()\n        old_groups.append(group)\n>       assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)\nE       AssertionError: assert [5: 'NameI'; ...:N:jYOI', ...] == [5: 'NameI'; '...:N:jYOI', ...]\nE         Left contains more items, first extra item: None: 'NamepyyTn9K\\'; 'HeaderA'; 'FooterOKipI5,'\nE         Use -v to get the full diff\n\ntest\\test_add_group.py:11: AssertionError",
+    "flaky" : false
+  },
+  "beforeStages" : [ {
+    "name" : "app",
+    "time" : {
+      "start" : 1504197037191,
+      "stop" : 1504197037294,
+      "duration" : 103
+    },
+    "status" : "unknown",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "stop",
+    "time" : {
+      "start" : 1504197019411,
+      "stop" : 1504197019411,
+      "duration" : 0
+    },
+    "status" : "unknown",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "check_ui",
+    "time" : {
+      "start" : 1504197027326,
+      "stop" : 1504197027326,
+      "duration" : 0
+    },
+    "status" : "unknown",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "db",
+    "time" : {
+      "start" : 1504197027294,
+      "stop" : 1504197027325,
+      "duration" : 31
+    },
+    "status" : "unknown",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "stop::fin",
+    "time" : {
+      "start" : 1504197038989,
+      "stop" : 1504197039518,
+      "duration" : 529
+    },
+    "status" : "unknown",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  }, {
+    "name" : "db::fin",
+    "time" : {
+      "start" : 1504197038987,
+      "stop" : 1504197038987,
+      "duration" : 0
+    },
+    "status" : "unknown",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "stepsCount" : 0,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "test/test_add_group"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "json_groups",
+    "value" : "None: 'NamepyyTn9K\\'; 'HeaderA'; 'FooterOKipI5,'"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "extra" : {
+    "tags" : [ ]
+  },
+  "statusDetailsSafe" : {
+    "message" : "AssertionError: assert [5: 'NameI'; ...:N:jYOI', ...] == [5: 'NameI'; '...:N:jYOI', ...]\n  Left contains more items, first extra item: None: 'NamepyyTn9K\\'; 'HeaderA'; 'FooterOKipI5,'\n  Use -v to get the full diff",
+    "trace" : "app = <fixture.application.Application object at 0x000002056A42C7B8>\ndb = <fixture.orm.ORMFixture object at 0x000002056A451780>\njson_groups = None: 'NamepyyTn9K\\'; 'HeaderA'; 'FooterOKipI5,', check_ui = False\n\n    def test_add_group(app, db, json_groups, check_ui):\n        group = json_groups\n        old_groups = db.get_group_list()\n        app.group.create(group)\n        new_groups = db.get_group_list()\n        old_groups.append(group)\n>       assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)\nE       AssertionError: assert [5: 'NameI'; ...:N:jYOI', ...] == [5: 'NameI'; '...:N:jYOI', ...]\nE         Left contains more items, first extra item: None: 'NamepyyTn9K\\'; 'HeaderA'; 'FooterOKipI5,'\nE         Use -v to get the full diff\n\ntest\\test_add_group.py:11: AssertionError",
+    "flaky" : false
+  },
+  "source" : "efbc952a47f9b6dc.json",
+  "statusMessage" : {
+    "present" : true
+  },
+  "parameterValues" : [ "None: 'NamepyyTn9K\\'; 'HeaderA'; 'FooterOKipI5,'" ]
+}

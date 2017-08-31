@@ -1,0 +1,58 @@
+{
+  "summary" : {
+    "reportName" : "Allure Report",
+    "testRuns" : [ ],
+    "statistic" : {
+      "failed" : 3,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 6
+    },
+    "time" : {
+      "start" : 1504197909220,
+      "stop" : 1504197922147,
+      "duration" : 12927,
+      "minDuration" : 1297,
+      "maxDuration" : 2819,
+      "sumDuration" : 12231
+    }
+  },
+  "environment" : [ ],
+  "suites" : {
+    "total" : 6,
+    "items" : [ ]
+  },
+  "history-trend" : [ {
+    "statistic" : {
+      "failed" : 3,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 3,
+      "unknown" : 0,
+      "total" : 6
+    }
+  } ],
+  "behaviors" : {
+    "total" : 6,
+    "items" : [ ]
+  },
+  "executors" : [ ],
+  "categories" : {
+    "total" : 1,
+    "items" : [ {
+      "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d",
+      "name" : "Product defects",
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 3
+      }
+    } ]
+  },
+  "launches" : [ ]
+}
